@@ -32,7 +32,7 @@ After that dead end I tried to go the K8S way of using a daemon set that mounts 
 WARNING: ca-certificates.crt does not contain exactly one certificate or CRL: skipping
 ~~~
 I Google on the error and find a GitHub issue!
-https://github.com/gliderlabs/docker-alpine/issues/30
+(https://github.com/gliderlabs/docker-alpine/issues/30)
 Reading through the issue though, I figure out that it's a warning that's expected behavior. The file in the error is supposed to contain all CA certs, and is supposed to be skipped when creating the new bundle, so that was a waste of time...
 
 It's time for dinner so I'm calling it a day. Seems like I was right and this is going to be a series. I'll  get back to this tomorrow and see if a good night's sleep will help. Now that I think of it, that might actually be the solution. Restarting the cluster might have K3S read the CA bundle and trust our custom CA cert. We'll see!
