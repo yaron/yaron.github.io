@@ -1,9 +1,9 @@
 ---
 layout: post
 title: Using Rancher Desktop in an Enterprise environment
-cover-img: /assets/img/path.jpg
-thumbnail-img: /assets/img/thumb.png
-share-img: /assets/img/path.jpg
+cover-img: /assets/img/rancher-desktop.png
+thumbnail-img: /assets/img/rancher-desktop.png
+share-img: /assets/img/rancher-desktop.png
 tags: [docker,k3s,K8S, rancher]
 ---
 
