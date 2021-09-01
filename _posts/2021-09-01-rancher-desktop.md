@@ -9,7 +9,7 @@ tags: [docker,k3s,K8S, rancher]
 
 So this is probably going to be part of a series, as this is an alpha product which I am trying to use in a hostile environment. I have no idea what I am going to run into, so we'll see how long I can keep this up.
 
-##Why?
+## Why?
 Good question! I was using docker desktop and was looking into alternatives that work on MacOS. Rancher Desktop looks promising and like something that could also be used by less technical users.
 
 ##Invalid user
@@ -22,7 +22,7 @@ We need to change the uid to a numeric uid because we have an OPA (Open Policy A
 https://github.com/rancher/kim/issues/74
 The help in slack and the thorough writeup on GitHub where a good first impression though!
 
-##No authority
+## No authority
 After having build our image, we're on to running one! I get a yaml file of a deployment that I have laying around and run kubectl apply on it. I open up Lens to see if it starts, but I see the dreaded yellow warning ⚠️. X509 error when pulling the image...
 I was trying to use an image from a local repository with a certificate signed by an internal Certificate Authority (CA). This CA is obviously not trusted yet on the Alpine Linux that is ran by Lima and on which K3S is running. I looked through the documentation of Lima to see if I can hook in there somewhere, but the only way I could even login to the Alpine VM/container was by doing a ps aux|grep "Lima" and copy pasting the ssh command that was in there.
 After that dead end I tried to go the K8S way of using a daemon set that mounts the host's CA cert directory, copies the CA cert to it and runs update-ca-certificates. I could see the new cert in the Alpine instance, but the pull still didn't work. There where some errors in the CA update container's logs though, so let's look at those.
