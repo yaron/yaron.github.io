@@ -16,8 +16,10 @@ Good question! I was using docker desktop and was looking into alternatives that
 I set up Rancher Desktop, connect to it with Lens and all looks good. Now let's build a docker image. Rancher Desktop comes bundled with KIM, which allows images to be available in the k3s cluster directly, so that sounds good. I run Kim build and all looks good. I run Kim images,..... no image... Oh let's try Kim images -a. Also not our image!?
 I am sure I am doing something wrong, so I start looking for logs. Kim is running in the cluster, so we can just do a kubectl log. After some digging I give up, connect to the rancher slack and join the Kim channel. I post a writeup of my problem and decide to test some other Dockerfile as well. This one works!?
 So now might be a good time to show the Dockerfile I was building.
-
-
+~~~
+FROM percona/percona-server-mongodb-operator:1.9.0
+USER 1001
+~~~
 We need to change the uid to a numeric uid because we have an OPA (Open Policy Agent) rule that forbids us from using uid 0 or a non numeric one. Turns out that we found our first bug!
 https://github.com/rancher/kim/issues/74
 The help in slack and the thorough writeup on GitHub where a good first impression though!
