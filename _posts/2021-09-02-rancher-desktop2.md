@@ -7,10 +7,11 @@ share-img: /assets/img/rancher-desktop.png
 tags: [docker,k3s,K8S, rancher]
 ---
 
+Yesterday I got Rancher Desktop running, solved an unbuildable Dockerfile issue with some help on Slack and dove into a Certificate issue. Today I'll be continuing with figuring out how to pull from a repository with a self signed CA certificate and I'll try to get some operators running.
+
+
 This is part 2 of a series where I am trying out Rancher Desktop as a replacement for Docker Desktop.
  - Part 1 can be found here: https://yaron.github.io/2021-09-01-rancher-desktop/
-
-Yesterday I got Rancher Desktop running, solved an unbuildable Dockerfile issue with some help on Slack and dove into a Certificate issue. Today I'll be continuing with figuring out how to pull from a repository with a self signed CA certificate and I'll try to get some operators running.
 
 ## Encoding
 Turns out my hunch from yesterday was wrong. A restart didn't solve the certificate issue, so we're starting with that today. I do another `ps aux|grep lima` to get the SSH command to login to the Alpine instance (the K3S host). I check the contents of `/usr/local/share/ca-certificates/ca.crt` where our cert should end up and notice that it's base64 encoded. That's not what I expected... I check my resources and notice that I am using a Configmap for storing the CA cert. In contrast to a secret, a configmap's data element is not supposed to contain base64 content. There is a binaryData field that should support base64 encoded content, but even though it [documented](https://kubernetes.io/docs/concepts/configuration/configmap/) it doesn't seem to work the same as the normal data field as I can't get it to load the data into an ENV variable in my container. I decide to take the easy road and just use a secret instead of a configmap.
