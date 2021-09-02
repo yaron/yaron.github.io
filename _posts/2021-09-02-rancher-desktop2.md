@@ -7,7 +7,7 @@ share-img: /assets/img/rancher-desktop.png
 tags: [docker,k3s,K8S, rancher]
 ---
 
-Yesterday I got Rancher Desktop running, solved an unbuildable Dockerfile issue with some help on Slack and dove into a Certificate issue. Today I'll be continuing with figuring out how to pull from a repository with a self signed CA certificate and I'll try to get some operators running.
+Yesterday I got Rancher Desktop running, solved an unbuildable Dockerfile issue with some help on Slack and dove into a Certificate issue. Today I'll be continuing with figuring out how to pull from a repository with a self signed CA certificate and I'll try to get an operator running.
 
 
 This is part 2 of a series where I am trying out Rancher Desktop as a replacement for Docker Desktop.
