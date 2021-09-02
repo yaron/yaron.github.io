@@ -83,3 +83,10 @@ Next up is the operator. I am running the [Percona for MongoDB Operator](https:/
 This last item can be done through the Docker Desktop GUI, but does reset the cluster which does never work the first time for me and needs to be retried a second time. This also states that we will lose all configuration and workloads, so good thing we have everything stored in code! Not only do you lose everything in the local filesystem, also all deployments, secrets etc. are lost. After applying everything again and restarting Rancher Desktop (fr the CA cert) I can deploy my whole mongodb cluster and everything seems to be running fine!
 
 That's it for today. I don't have any other things I wanted to test, but if there is something I missed let me know! You can contact me on twitter [@yarontal](https://twitter.com/yarontal).
+
+## Update
+After linking to this post on the Rancher Desktop Slack I got some feedback.
+Matt Farina:
+> Thanks for documenting this. We’re working on having Rancher Desktop use the CAs of the system it’s running on. That should be in the next release.
+
+Also the next issue I was hitting was authenticated pulls from a private registry. That should be fixed in KIM and should also come to Rancher Desktop soon!
